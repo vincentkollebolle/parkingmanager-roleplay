@@ -1,0 +1,14 @@
+{
+    "name": "ri087/parkingmanager-roleplay",
+    "autoload": {
+        "psr-4": {
+            "Ri087\\ParkingmanagerRoleplay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lead dev"
+        }
+    ],
+    "require": {}
+}
