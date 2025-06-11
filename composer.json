@@ -1,14 +1,39 @@
 {
     "name": "ri087/parkingmanager-roleplay",
+    "description": "API PHP native pour la gestion de parking - Projet scolaire",
+    "type": "project",
     "autoload": {
         "psr-4": {
-            "Ri087\\ParkingmanagerRoleplay\\": "src/"
+            "App\\": "api/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "authors": [
         {
-            "name": "lead dev"
+            "name": "lead dev",
+            "role": "Developer"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php -r \"file_exists('.env.example') && !file_exists('.env') && copy('.env.example', '.env');\""
+        ],
+        "serve": "php -S localhost:8000 -t api/public",
+        "test": "phpunit"
+    }
 }
