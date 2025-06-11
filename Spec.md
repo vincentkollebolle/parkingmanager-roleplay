@@ -2,7 +2,54 @@
 
 ## 1. Objectif du projet
 
-Concevoir et développer un simulateur de parking permettant de gérer dynamiquement l'arrivée, le stationnement et le départ de véhicules de types variés, selon des politiques de tarifications définies. Le but est de maximiser les revenus du parking en appliquant une stratégie tarifaire optimisée.
+En tant que propriétaire foncier nous venons d'acheter un terrain à côté d'une route.
+Nous voulons ouvrir un parking dessus et donc faire des simulations pour savoir combien on peut
+gagner tout en réduisant l'impact carbone au maximum de notre parking (quelle politique de prix mettre en place, et comment organiser notre parking).
+
+Pour cela nous vous demandons de concevoir et développer un simulateur de parking permettant de gérer dynamiquement l'arrivée, le stationnement et le départ de véhicules de types variés, selon des politiques de tarifications définies. Le but est de maximiser les revenus du parking en appliquant une stratégie tarifaire optimisée.
+
+Une autre entreprise est chargée de développer le front-end affichant le résultat des simulations. 
+(cf projet dédié ).
+
+
+**En entrée** 
+- Nombre de tour de simulation = tick (par défault =  = 1 an) 
+- Nombre de place (par défault = 1000 places)
+- Affluence des voitures ( Fichier json descriptif de l'affluence). 
+
+**Format du Json simulant l'affluence sur la route** 
+
+Doit paraître un peu réaliste (alternance jour/nuit, été/hiver etc...).
+Durée de la simulation : 1ans = 8760 ticks (1 tick = 1h). 
+
+
+```json
+// Exemple de JSON 
+[
+    {
+        'date': 01-01-2025 00:00,
+        'vehicles': [
+            { 'type': 'car', 'wantedDuration':2, 'maxPricePerTick': 2 },
+            { 'type':'car', 'wantedDuration':2, 'maxPricePerTick': 2 },
+            { 'type':'car', 'wantedDuration':2, 'maxPricePerTick': 2 },
+            { 'type':'truck', 'wantedDuration':3, 'maxPricePerTick': 2 },
+            { 'type':'truck', 'wantedDuration':3, 'maxPricePerTick': 2 },
+            { 'type':'moto', 'wantedDuration':1, 'maxPricePerTick': 2 },
+            { 'type':'bike', 'wantedDuration':0, 'maxPricePerTick': 2 },
+        ]
+    },
+    ...
+]
+```
+Règles métier : 
+```json
+{ 
+    type: string; // Décrit le type de véhicule (car | truck | moto | bike) 
+    wantedDuration': number; // 0 .. n 
+    maxPricePerHour: number; // Prix maximum que la personne est prête à mettre par Heure.  
+},
+``` 
+
 
 ## 2. Contexte pédagogique
 
@@ -50,7 +97,7 @@ Ce projet permet de mettre en pratique la programmation orientée objet, la conc
 | Entité                                     | Description                                                |
 | ------------------------------------------ | ---------------------------------------------------------- |
 | `Vehicle`                                  | Interface des véhicules (type, consommation, encombrement) |
-| `Car`, `Truck`, `Motorbike`, `ElectricCar` | Implémentations concrètes                                  |
+| `Car`, `Truck`, `Motorbike` | Implémentations concrètes                                  |
 | `ParkingSpot`                              | Place de parking avec type, capacité, occupation           |
 | `Clock`                                    | Observable déclenchant des `tick()`                        |
 | `Route`                                    | Génère les véhicules à intervalles réguliers               |
@@ -111,7 +158,6 @@ Les véhicules en attente d’une place émettent du CO₂ à chaque tick, selon
 | `Car`       | `2`  | 3.5 |  10      | na  |
 | Truck       | 3    | 6.0 |  25      | na  |
 | Moto        | 1    | 1.0 |  7       | na  |
-| ElectricCar | 2    | 0.5 |  1      | 3 |
 |             |      |     |          |  | 
 ...en options (cheval, vélo ...)
 
@@ -123,8 +169,6 @@ Les véhicules en attente d’une place émettent du CO₂ à chaque tick, selon
 | `co2`            | `float` | g/Tick de cO2 emi si en circulation |     |
 | `isParked`       | `bool`  | Véhicule en stationnement ou non    |     |
 |                  |         |                                     |     |
-
-Si voiture electrique il faut stocker l'état de la batterie de la voiture électrique (0 = empty , 3 = full). 
 
 
 10.2 La Route (`Road`)
@@ -153,13 +197,10 @@ Affiche les informations sur le parking et les impacts carbones.
 Le parking fonctionne avec un "voiturier". C'est lui qui s'occupe d'acceuillir, garer et dégarer les voitures. En gros on donne ses clés à l'arrivé et on est notifié pour récupérer sa voiture à heure dite (ou fourière ;)). 
 Une voiture arrive avec une durée d'arrêt décidée à l'avance (`wantedDuration`) elle est viré par le voiturié quand elle a "fait son temps". 
 
-**Cas spécifique voiture électrique** 
-Une voiture electrique pour se recharger doit être sur une place voiture électrique. Idéalement, une fois pleine elle est déplacée par le voiturié sur une place normal. Quand une voiture electrique arrive elle à par défaut un chargement entre 0 et 3 (cf section véhicule). 
 
 **Composition du parking :** 
 
 - 1000 slots. 
-- 200 slots voitures electriques
 
 
 
@@ -181,9 +222,8 @@ Exemple de stratégies possibles :
 | `FlatRateStrategy`            | Tarif fixe pour toute durée                |
 | `HourlyStrategy`              | Tarif par tranche horaire                  |
 | `DemandBasedStrategy`         | Majoration si > 80% des places sont prises |
-| `EcoFriendlyDiscountStrategy` | -20% pour véhicules électriques            |
 | `NightRateStrategy`           | Tarif réduit entre 22h et 6h               |
 | `RandomBonusStrategy`         | 1 véhicule sur 10 gagne une réduction      |
 
 
-_Fin du document de spécifications v1.1_
+_Fin du document de spécifications v1.2_
