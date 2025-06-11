@@ -2,18 +2,16 @@
 
 ## Structure des dossiers
 
-ParkingManager/
-├── Core/
-
-├── Entities/
-├── Strategies/
-├── Trackers/
-├── Factories/
-├── Builder/
-├── Route/
-├── Interfaces/
-├── Tests/
-│   ├── Unit/
-│   └── Integration/
-│
+ParkingManager/  
+├── Core/  
+├── Entities/  
+├── Strategies/  
+├── Trackers/  
+├── Factories/  
+├── Builder/  
+├── Route/  
+├── Interfaces/  
+├── Tests/  
+│   ├── Unit/  
+│   └── Integration/  
 └── README.md
