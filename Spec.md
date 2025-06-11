@@ -1,4 +1,4 @@
-# Spécifications Fonctionnelles et Techniques – Parking Manager v1.0
+# Spécifications Fonctionnelles et Techniques – Parking Manager v1.2
 
 ## 1. Objectif du projet
 
