@@ -1,5 +1,41 @@
-# Vue 3 + Vite
+```markdown
+# ParkingManager Roleplay - Frontend
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Ce projet est une application frontend développée avec Vue.js.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Prérequis
+
+- Node.js (version recommandée : 18.x ou supérieure)
+- npm (généralement installé avec Node.js)
+
+## Installation
+
+```bash
+npm install
+```
+
+## Lancer le serveur de développement
+
+```bash
+npm run dev
+```
+
+L'application sera accessible à l'adresse http://localhost:5173/
+
+## Compiler pour la production
+
+```bash
+npm run build
+```
+
+## Structure du projet
+
+- `src/` : Contient le code source de l'application Vue
+- `public/` : Fichiers statiques publics
+- `package.json` : Dépendances et scripts npm
+
+
+## Licence
+
+Ce projet est sous licence MIT.
+```
