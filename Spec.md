@@ -106,13 +106,13 @@ Les véhicules en attente d’une place émettent du CO₂ à chaque tick, selon
 
 **Types de Véchicules**
 
-| Type        | Size | CO2 |     |
-| ----------- | ---- | --- | --- |
-| `Car`       | `2`  | 3.5 |     |
-| Truck       | 3    | 6.0 |     |
-| Moto        | 1    | 1.0 |     |
-| ElectricCar | 2    | 0.5 |     |
-|             |      |     |     |
+| Type        | Size | CO2 |   Price (/tick)  | Reload Time (nb Tick) | 
+| ----------- | ---- | --- | ---      |  |
+| `Car`       | `2`  | 3.5 |  10      | na  |
+| Truck       | 3    | 6.0 |  25      | na  |
+| Moto        | 1    | 1.0 |  7       | na  |
+| ElectricCar | 2    | 0.5 |  1      | 3 |
+|             |      |     |          |  | 
 ...en options (cheval, vélo ...)
 
 | Attribut         | Type    | Description                         |     |
@@ -123,6 +123,8 @@ Les véhicules en attente d’une place émettent du CO₂ à chaque tick, selon
 | `co2`            | `float` | g/Tick de cO2 emi si en circulation |     |
 | `isParked`       | `bool`  | Véhicule en stationnement ou non    |     |
 |                  |         |                                     |     |
+
+Si voiture electrique il faut stocker l'état de la batterie de la voiture électrique (0 = empty , 3 = full). 
 
 
 10.2 La Route (`Road`)
@@ -143,7 +145,23 @@ Suivi des emissions carbones
 
 10.6 Le Dashboard (`Dashboard`)
 
+Réaliser par une entreprise externe (autre équipe indépendante). 
 Affiche les informations sur le parking et les impacts carbones.
+
+10.7 Le Parking (`Parking`)
+
+Le parking fonctionne avec un "voiturier". C'est lui qui s'occupe d'acceuillir, garer et dégarer les voitures. En gros on donne ses clés à l'arrivé et on est notifié pour récupérer sa voiture à heure dite (ou fourière ;)). 
+Une voiture arrive avec une durée d'arrêt décidée à l'avance (`wantedDuration`) elle est viré par le voiturié quand elle a "fait son temps". 
+
+**Cas spécifique voiture électrique** 
+Une voiture electrique pour se recharger doit être sur une place voiture électrique. Idéalement, une fois pleine elle est déplacée par le voiturié sur une place normal. Quand une voiture electrique arrive elle à par défaut un chargement entre 0 et 3 (cf section véhicule). 
+
+**Composition du parking :** 
+
+- 1000 slots. 
+- 200 slots voitures electriques
+
+
 
 ## 11. Jeu de données 
 
@@ -168,4 +186,4 @@ Exemple de stratégies possibles :
 | `RandomBonusStrategy`         | 1 véhicule sur 10 gagne une réduction      |
 
 
-_Fin du document de spécifications v1.0_
+_Fin du document de spécifications v1.1_
