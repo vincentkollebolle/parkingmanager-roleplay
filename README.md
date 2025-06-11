@@ -4,6 +4,7 @@
 
 ParkingManager/
 ├── Core/
+
 ├── Entities/
 ├── Strategies/
 ├── Trackers/
