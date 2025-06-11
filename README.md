@@ -13,5 +13,7 @@ ParkingManager/
 ├── Interfaces/  
 ├── Tests/  
 │   ├── Unit/  
-│   └── Integration/  
+│   └── Integration/
+├── public/  
+│   └── index.php  
 └── README.md
