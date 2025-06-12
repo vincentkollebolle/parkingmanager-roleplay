@@ -49,7 +49,53 @@ Règles métier :
     maxPricePerHour: number; // Prix maximum que la personne est prête à mettre par Heure.  
 },
 ``` 
+Réonse Attendu :
+```json
+{
+  "simulationName": "ParkingManager_2025-06-11_14-00",
+  "parkingSize": 1000,
+  "durationTicks": 8760,
 
+  "revenue": {
+    "moneyWon": 158340,
+    "moneyLost": 23400
+  },
+
+  "traffic": {
+    "totalVehiclesGenerated": 12345,
+    "totalVehiclesParked": 9876,
+    "totalVehiclesRejected": 2469
+  },
+
+  "byVehicleType": {
+    "car": {
+      "parked": 5200,
+      "rejected": 900,
+      "ticketPricePerHour": 2
+    },
+    "electric": {
+      "parked": 1500,
+      "rejected": 300,
+      "ticketPricePerHour": 1.5
+    },
+    "truck": {
+      "parked": 800,
+      "rejected": 200,
+      "ticketPricePerHour": 3.5
+    },
+    "bike": {
+      "parked": 2376,
+      "rejected": 1069,
+      "ticketPricePerHour": 0.5
+    }
+  },
+
+  "co2": {
+    "totalEmittedWhileWaiting": 35400.5,
+    "averageEmissionPerRejectedVehicle": 3.8
+  }
+}
+```
 
 ## 2. Contexte pédagogique
 
@@ -226,4 +272,4 @@ Exemple de stratégies possibles :
 | `RandomBonusStrategy`         | 1 véhicule sur 10 gagne une réduction      |
 
 
-_Fin du document de spécifications v1.2_
+_Fin du document de spécifications v1.3_
