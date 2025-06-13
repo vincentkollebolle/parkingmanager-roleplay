@@ -1,8 +1,9 @@
 <?php
-use PHPUnit\Framework\TestCase;
+namespace Tests;
 
-require_once __DIR__ . '/../src/Clock.php';
-require_once __DIR__ . '/../src/Interface/ObserverInterface.php';
+use PHPUnit\Framework\TestCase;
+use App\Clock;
+use App\Interfaces\ObserverInterface;
 
 class ClockTest extends TestCase
 {

@@ -1,12 +1,13 @@
 <?php
-use PHPUnit\Framework\TestCase;
+namespace Tests;
 
-require_once __DIR__ . '/../src/Interface/ObserverInterface.php';
+use PHPUnit\Framework\TestCase;
+use App\Interfaces\ObserverInterface;
 
 class ObserverInterfaceTest extends TestCase
 {
     public function testInterfaceExists()
     {
-        $this->assertTrue(interface_exists('ObserverInterface'));
+        $this->assertTrue(interface_exists(ObserverInterface::class));
     }
 }
