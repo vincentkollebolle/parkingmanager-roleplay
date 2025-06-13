@@ -13,7 +13,7 @@
       <tbody>
       <tr v-for="(type, key) in data.byVehicleType" :key="key" class="bg-white hover:bg-blue-50 rounded">
         <td class="p-3 font-medium text-gray-900">
-          {{ getEmoji(key) }} {{ capitalize(key) }}
+          {{ getEmoji(key) }} {{ translateType(key) }}
         </td>
         <td class="text-center">{{ type.parked }}</td>
         <td class="text-center">{{ type.rejected }}</td>
@@ -37,4 +37,13 @@ const getEmoji = (type) => {
     default: return '🚙'
   }
 }
+
+const vehicleTypeTranslations = {
+  car: "Voiture",
+  electric: "Voiture électrique",
+  truck: "Camion",
+  bike: "Moto"
+}
+
+const translateType = (key) => vehicleTypeTranslations[key] || capitalize(key)
 </script>
