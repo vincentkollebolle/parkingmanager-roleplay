@@ -1,7 +1,9 @@
 <?php
 
-require_once 'Interface/VehicleInterface.php';
-require_once 'Enum/VehicleEnum.php';
+namespace App;
+
+use App\Enum\VehicleEnum;
+use App\Interface\VehicleInterface;
 
 class Vehicle implements VehicleInterface
 {

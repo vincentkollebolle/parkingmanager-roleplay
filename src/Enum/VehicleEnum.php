@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Enum;
+
 enum VehicleEnum: string
 {
     case CAR = 'car';

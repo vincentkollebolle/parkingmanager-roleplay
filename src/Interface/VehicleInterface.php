@@ -1,5 +1,9 @@
 <?php
-interface VehicleInterface {
+
+namespace App\Interface;
+
+interface VehicleInterface
+{
     public function getType(): string;
     public function getWantedDuration(): int;
     public function getMaxPricePerTick(): float;

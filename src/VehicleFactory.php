@@ -1,7 +1,8 @@
 <?php
 
-require_once 'Vehicle.php';
-require_once 'Enum/VehicleEnum.php';
+namespace App;
+
+use App\Enum\VehicleEnum;
 
 class VehicleFactory
 {
