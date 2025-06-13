@@ -1,10 +1,17 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> 038b706 (fix: tests)
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use App\Vehicle;
 use App\Enum\VehicleEnum;
+<<<<<<< HEAD
 use App\Interfaces\VehicleInterface;
+=======
+>>>>>>> 038b706 (fix: tests)
 
 class VehicleTest extends TestCase
 {

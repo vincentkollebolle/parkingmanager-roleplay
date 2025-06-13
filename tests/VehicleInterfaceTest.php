@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+
+>>>>>>> 038b706 (fix: tests)
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
