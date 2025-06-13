@@ -1,29 +1,18 @@
 <?php
-class Clock implements ObserverInterface
+class Clock
 {
-    private $tick = 0;
+    /** @var ObserverInterface */
     private $observers = [];
 
-    public function __construct()
-    {
-    
-    }
-
-    public function subscribe(ObserverInterface $observer): void
+    public function subscribe(ObserverInterface $observer)
     {
         $this->observers[] = $observer;
     }
 
-   public function onTick(int $tick): void
+    public function tick()
     {
-        $this->tick = $tick;
         foreach ($this->observers as $observer) {
-            $observer->onTick($this->tick);
+            $observer->onTick();
         }
-    }
-
-    public function getTick(): int
-    {
-        return $this->tick;
     }
 }

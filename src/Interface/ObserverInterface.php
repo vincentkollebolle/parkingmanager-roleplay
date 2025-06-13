@@ -1,4 +1,5 @@
 <?php
-interface ObserverInterface {
-    public function onTick(int $tick);
+interface ObserverInterface
+{
+    public function onTick();
 }
