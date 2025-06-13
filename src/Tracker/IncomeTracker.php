@@ -2,7 +2,9 @@
 
 namespace App\Tracker;
 
-class IncomeTracker
+use App\Interfaces\ObserverInterface;
+
+class IncomeTracker implements ObserverInterface
 {
     private $moneyEarn = 0;
     private $lossOfEarning = 0;
@@ -17,7 +19,7 @@ class IncomeTracker
         $this->lossOfEarning += $amount;
     }
 
-    public function onTick($tick) {}
+    public function onTick(int $tick): void {}
 
     public function getReport(): array
     {

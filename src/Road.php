@@ -2,10 +2,11 @@
 
 namespace App;
 
-use App\Enum\VehicleEnum;
+use App\Interfaces\ObserverInterface;
 use App\VehicleFactory;
+use App\Enum\VehicleEnum;
 
-class Road
+class Road implements ObserverInterface
 {
     private $schedule = [];
     private $incomeTracker;
@@ -21,11 +22,12 @@ class Road
         $this->co2Tracker = $co2Tracker;
     }
 
-    public function onTick($tick)
+    public function onTick(int $tick): void
     {
         if (isset($this->schedule[$tick])) {
             foreach ($this->schedule[$tick] as $vehicleData) {
-                $vehicle = VehicleFactory::create($vehicleData['type'], $vehicleData['wantedDuration'], $vehicleData['maxPricePerTick']);
+                $vehicleType = VehicleEnum::from($vehicleData['type']);
+                $vehicle = VehicleFactory::create($vehicleType, $vehicleData['wantedDuration'], $vehicleData['maxPricePerTick']);
                 if ($vehicle->getType()->getPrice() > $vehicle->getMaxPricePerTick()) {
                     $this->incomeTracker->addLost($vehicle->getType()->getPrice() * $vehicle->getWantedDuration());
                     $this->co2Tracker->addRejected($vehicle);

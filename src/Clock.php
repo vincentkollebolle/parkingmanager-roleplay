@@ -8,6 +8,7 @@ class Clock
 {
     /** @var ObserverInterface[] */
     private $observers = [];
+    private $currentTick = 0;
 
     public function subscribe(ObserverInterface $observer)
     {
@@ -17,7 +18,8 @@ class Clock
     public function tick()
     {
         foreach ($this->observers as $observer) {
-            $observer->onTick();
+            $observer->onTick($this->currentTick);
         }
+        $this->currentTick++;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Tracker\CO2Tracker;
+use App\Tracker\IncomeTracker;
+
 class SimulationRunner
 {
     public function run(array $trafficSchedule): array
@@ -12,9 +15,9 @@ class SimulationRunner
         $parking = Parking::getInstance($parkingSize);
         $incomeTracker = new IncomeTracker();
         $co2Tracker = new CO2Tracker();
-        $route = new Route($trafficSchedule, $incomeTracker, $co2Tracker);
+        $road = new Road($trafficSchedule, $incomeTracker, $co2Tracker);
 
-        $clock->subscribe($route);
+        $clock->subscribe($road);
         $clock->subscribe($parking);
         $clock->subscribe($incomeTracker);
         $clock->subscribe($co2Tracker);

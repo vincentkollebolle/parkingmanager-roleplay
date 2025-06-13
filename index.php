@@ -2,7 +2,7 @@
 
 use App\SimulationRunner;
 
-require_once 'src/SimulationRunner.php';
+require_once 'vendor/autoload.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'scenario') {
 

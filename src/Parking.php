@@ -3,9 +3,9 @@
 namespace App;
 
 use App\Enum\VehicleEnum;
-use App\VehicleFactory;
+use App\Interfaces\ObserverInterface;
 
-class Parking {
+class Parking implements ObserverInterface {
     private static $instance = null;
     private $size;
     /**
@@ -31,10 +31,10 @@ class Parking {
         return self::$instance;
     }
 
-    public function onTick($tick) {}
+    public function onTick(int $tick): void {}
 
     public function parkVehicle($vehicle) {
-        $type = $vehicle->getType();
+        $type = $vehicle->getType()->value;
         $this->totalVehiclesGenerated++;
 
         if (!isset($this->stats['byType'][$type])) {
@@ -51,7 +51,7 @@ class Parking {
     }
 
     public function rejectVehicle($vehicle) {
-        $type = $vehicle->getType();
+        $type = $vehicle->getType()->value;
         $this->totalVehiclesGenerated++;
         $this->totalVehiclesRejected++;
     

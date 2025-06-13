@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface ObserverInterface
 {
-    public function onTick();
+    public function onTick(int $tick);
 }
