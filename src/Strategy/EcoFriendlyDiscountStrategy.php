@@ -16,7 +16,7 @@ class EcoFriendlyDiscountStrategy implements PriceStrategyInterface
         float $occupancyRate = 0.0
     ): float {
         
-        $vehicleEnum = new VehicleEnum($vehicle->getType());
+        $vehicleEnum = $vehicle->getType();
         $basePrice = $vehicleEnum->getPrice();
         
         // Applique une réduction pour les véhicules écologiques (faible émission CO2)

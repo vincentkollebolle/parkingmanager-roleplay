@@ -52,7 +52,6 @@ class Parking implements ObserverInterface {
 
     public function rejectVehicle($vehicle) {
         $type = $vehicle->getType()->value;
-        $this->totalVehiclesGenerated++;
         $this->totalVehiclesRejected++;
     
         if (!isset($this->stats['byType'][$type])) {

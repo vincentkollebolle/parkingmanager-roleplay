@@ -40,3 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['route']) && $_GET['rout
     echo json_encode($result, JSON_PRETTY_PRINT);
     exit;
 }
+
+define('RUNNING_FROM_CLI', php_sapi_name() === 'cli');
+
+if (RUNNING_FROM_CLI) {
+    $data = json_decode(file_get_contents(__DIR__ . '/traffic_schedule.json'), true);
+    if (!$data) {
+        fwrite(STDERR, "traffic_schedule.json manquant ou invalide\n");
+        exit(1);
+    }
+    $simulator = new SimulationRunner();
+    $result = $simulator->run($data);
+    echo json_encode($result, JSON_PRETTY_PRINT) . "\n";
+    exit(0);
+}

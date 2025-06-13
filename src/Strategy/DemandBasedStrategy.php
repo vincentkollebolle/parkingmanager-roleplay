@@ -13,7 +13,7 @@ class DemandBasedStrategy implements PriceStrategyInterface
         VehicleInterface $vehicle,
         float $occupancyRate = 0.0
     ): float {
-        $vehicleEnum = new VehicleEnum($vehicle->getType());
+        $vehicleEnum = $vehicle->getType();
         $basePrice = $vehicleEnum->getPrice();
 
         if ($occupancyRate >= self::DEMAND_THRESHOLD) {

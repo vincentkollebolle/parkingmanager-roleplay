@@ -19,12 +19,11 @@ class FlatRateStrategy implements PriceStrategyInterface
      * @param float $occupancyRate Le taux d'occupation (non utilisé dans cette stratégie)
      * @return float Le prix par tick
      * @throws \InvalidArgumentException Si le type de véhicule n'est pas reconnu
-     */
-    public function calculatePrice(
+     */    public function calculatePrice(
         VehicleInterface $vehicle,
         float $occupancyRate = 0.0
     ): float {
-        $vehicleType = $vehicle->getType();
+        $vehicleType = $vehicle->getType()->value;
         
         if (!isset(self::RATES[$vehicleType])) {
             throw new \InvalidArgumentException(
