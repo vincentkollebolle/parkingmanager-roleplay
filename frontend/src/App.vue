@@ -10,7 +10,11 @@ import { ref, onMounted, computed } from 'vue'
 const simulation = ref(null)
 
 const fetchSimulation = async () => {
-  const res = await fetch('/api/dashboard.json')
+  const res = await fetch('https://3ff6-79-174-192-82.ngrok-free.app/index.php?route=scenario', {
+    headers: {
+      'ngrok-skip-browser-warning': 'true'
+    }
+  })
   simulation.value = await res.json()
 }
 
@@ -46,38 +50,44 @@ const formattedSimulationName = computed(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-white-300 p-4">
-    <h1 class="text-3xl font-bold text-center text-slate-900 mb-6">
+  <div class="min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-100 p-6 font-sans">
+    <h1 class="text-4xl font-extrabold text-center text-slate-800 mb-10">
       Résultat du parking –
-      <span v-if="formattedSimulationName">{{ formattedSimulationName }}</span>
+      <span v-if="formattedSimulationName" class="text-blue-600">{{ formattedSimulationName }}</span>
     </h1>
 
-    <div class="flex gap-6 mb-8">
-      <!-- Left widget -->
-      <div class="flex-1 space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-white rounded-2xl shadow-lg p-6 transition hover:shadow-xl">
         <SimulationVehicleBreakdown v-if="simulation" :data="simulation" />
       </div>
 
-      <!-- Right widget -->
-      <div class="flex-1 space-y-4">
-        <SimulationSummary
-            v-if="simulation"
-            :traffic="simulation.traffic"
-            :revenue="simulation.revenue"
-        />
-        <SimulationCO2
-            v-if="simulation"
-            :co2="simulation.co2"
-        />
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl shadow-lg p-6 transition hover:shadow-xl">
+          <SimulationSummary
+              v-if="simulation"
+              :traffic="simulation.traffic"
+              :revenue="simulation.revenue"
+          />
+        </div>
+        <div class="bg-white rounded-2xl shadow-lg p-6 transition hover:shadow-xl">
+          <SimulationCO2
+              v-if="simulation"
+              :co2="simulation.co2"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="flex gap-6 mb-8" style="height: 350px;">
-      <div class="flex-1 space-y-4 h-full flex justify-center" >
+    <div class="flex gap-6 mb-8" style="min-height: 400px;">
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex justify-center items-center transition hover:shadow-xl">
         <PieChartParked :vehicules-data="simulation?.byVehicleType" />
       </div>
-      <div class="flex-1 space-y-4 h-full flex justify-center">
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex justify-center items-center transition hover:shadow-xl">
         <PieChartRejected :vehicules-data="simulation?.byVehicleType" />
+      </div>
+<!--      image frontend/public/medias/car_park.jpg-->
+      <div class="bg-white rounded-2xl flex justify-center items-center transition hover:shadow-xl">
+        <img src="/medias/car_park.jpg" alt="Parking" class="w-full h-auto rounded-lg shadow-md" />
       </div>
     </div>
   </div>
