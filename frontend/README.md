@@ -22,6 +22,9 @@ parkingmanager-roleplay/
 │   │   └── main.js
 │   ├── index.html
 │   └── ...
+├── public/
+│   ├── api/                 # API simulée ou fichiers d'API
+│   └── medias/              # Fichiers médias (images, vidéos, etc.)
 ├── README.md                # Ce fichier
 └── ...
 ```
