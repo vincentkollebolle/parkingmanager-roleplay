@@ -1,7 +1,7 @@
 <?php
 class Clock
 {
-    /** @var ObserverInterface */
+    /** @var ObserverInterface[] */
     private $observers = [];
 
     public function subscribe(ObserverInterface $observer)
