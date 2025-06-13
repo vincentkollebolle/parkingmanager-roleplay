@@ -1,41 +1,64 @@
-```markdown
-# ParkingManager Roleplay - Frontend
+# ParkingManager Roleplay
 
-Ce projet est une application frontend développée avec Vue.js.
+## Présentation
 
-## Prérequis
+ParkingManager est une application web de simulation de gestion de parking. Elle permet de visualiser et d'analyser les données liées à l'entrée, au stationnement et au rejet de différents types de véhicules dans un parking. L'application propose également des statistiques sur les émissions de CO2 et des visualisations graphiques pour permettre de choisir la stratégie de tarification idéale pour un parking.
 
-- Node.js (version recommandée : 18.x ou supérieure)
-- npm (généralement installé avec Node.js)
+## Fonctionnalités principales
+
+- **Simulation de véhicules** : Affichage des véhicules entrés, garés et rejetés par type (voiture, camion, moto, etc.).
+- **Statistiques CO2** : Affichage des émissions de CO2 générées par les véhicules.
+- **Visualisations graphiques** : Diagrammes circulaires pour la répartition des véhicules garés et rejetés.
+- **Tableaux de bord** : Vue synthétique des données de simulation.
+
+## Structure du projet
+
+```
+parkingmanager-roleplay/
+├── frontend/                # Application frontend Vue.js
+│   ├── src/
+│   │   ├── components/      # Composants Vue.js (Simulation, Graphiques, etc.)
+│   │   ├── App.vue
+│   │   └── main.js
+│   ├── index.html
+│   └── ...
+├── README.md                # Ce fichier
+└── ...
+```
 
 ## Installation
 
+1. **Prérequis** :
+    - Node.js >= 16
+    - npm >= 8
+
+2. **Installation des dépendances** :
+
 ```bash
+cd frontend
 npm install
 ```
 
-## Lancer le serveur de développement
+3. **Lancement du serveur de développement** :
 
 ```bash
 npm run dev
 ```
 
-L'application sera accessible à l'adresse http://localhost:5173/
+L'application sera accessible sur `http://localhost:5173` (ou le port affiché dans le terminal).
 
-## Compiler pour la production
+## Utilisation
 
-```bash
-npm run build
-```
+- Accédez à l'application via votre navigateur.
+- Visualisez les statistiques et les graphiques générés à partir des données de simulation.
 
-## Structure du projet
+## Technologies utilisées
 
-- `src/` : Contient le code source de l'application Vue
-- `public/` : Fichiers statiques publics
-- `package.json` : Dépendances et scripts npm
-
+- [Vue.js 3](https://vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Licence
 
 Ce projet est sous licence MIT.
-```
+
