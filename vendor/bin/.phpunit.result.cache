@@ -1,1 +1,0 @@
-{"version":1,"defects":[],"times":{"ClockTest::testSomething":0.001,"ObserverInterfaceTest::testInterfaceExists":0.001,"ClockTest::testSubscribeAndTickCallsOnTick":0.007}}
