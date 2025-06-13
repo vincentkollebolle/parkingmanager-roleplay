@@ -1,23 +1,29 @@
 <?php
-class Clock {
+class Clock implements ObserverInterface
+{
     private $tick = 0;
-    private $duration;
     private $observers = [];
 
-    public function __construct($duration) {
-        $this->duration = $duration;
+    public function __construct()
+    {
+    
     }
 
-    public function attach($observer) {
+    public function subscribe(ObserverInterface $observer): void
+    {
         $this->observers[] = $observer;
     }
 
-    public function tick() {
+   public function onTick(int $tick): void
+    {
+        $this->tick = $tick;
         foreach ($this->observers as $observer) {
-            if (method_exists($observer, 'onTick')) {
-                $observer->onTick($this->tick);
-            }
+            $observer->onTick($this->tick);
         }
-        $this->tick++;
+    }
+
+    public function getTick(): int
+    {
+        return $this->tick;
     }
 }
