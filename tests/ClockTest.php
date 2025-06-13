@@ -5,8 +5,6 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use App\Clock;
 use App\Interfaces\ObserverInterface;
-use App\Clock;
-use App\Interfaces\ObserverInterface;
 
 class ClockTest extends TestCase
 {
