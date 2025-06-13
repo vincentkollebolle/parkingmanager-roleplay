@@ -11,7 +11,7 @@
     <div class="bg-gray-100 border-l-4 border-green-500 text-green-800 p-4 rounded-xl shadow-md">
       <p class="text-md font-semibold">
         💶 Revenus gagnés : <strong>{{ revenue.moneyEarn }} €</strong><br>
-        🧾 Revenus perdus : <strong>{{ revenue.lossOfEarning }} €</strong>
+        🧾 Manque à gagner : <strong class="text-red-600">{{ revenue.lossOfEarning }} €</strong>
       </p>
     </div>
   </div>

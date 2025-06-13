@@ -10,7 +10,8 @@ import { ref, onMounted, computed } from 'vue'
 const simulation = ref(null)
 
 const fetchSimulation = async () => {
-  const res = await fetch('https://3ff6-79-174-192-82.ngrok-free.app/index.php?route=scenario', {
+  // const res = await fetch('/api/dashboard.json')
+  const res = await fetch('https://7879-79-174-192-82.ngrok-free.app/index.php?route=scenario', {
     headers: {
       'ngrok-skip-browser-warning': 'true'
     }
@@ -85,7 +86,7 @@ const formattedSimulationName = computed(() => {
       <div class="bg-white rounded-2xl shadow-lg p-6 flex justify-center items-center transition hover:shadow-xl">
         <PieChartRejected :vehicules-data="simulation?.byVehicleType" />
       </div>
-<!--      image frontend/public/medias/car_park.jpg-->
+
       <div class="bg-white rounded-2xl flex justify-center items-center transition hover:shadow-xl">
         <img src="/medias/car_park.jpg" alt="Parking" class="w-full h-auto rounded-lg shadow-md" />
       </div>
