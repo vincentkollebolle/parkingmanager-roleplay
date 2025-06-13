@@ -1,19 +1,17 @@
 <?php
 class CO2Tracker {
-    private $totalEmission = 0;
-    private $rejectedVehicles = 0;
+    private $carEmission = 0;
+    private $allCarEmission = 0;
 
-    public function addRejected($vehicle) {
-        $this->totalEmission += $vehicle->getCO2();
-        $this->rejectedVehicles++;
+    public function addRejectedCO2(Vehicle $vehicle) {
+        // passe par VehicleFactory puis creer vehicule
+        $this->carEmission += $vehicle->getCO2();
+        $this->allCarEmission++;
     }
-
-    public function onTick($tick) {}
-
     public function getReport(): array {
         return [
-            "totalEmittedWhileWaiting" => round($this->totalEmission, 1),
-            "averageEmissionPerRejectedVehicle" => $this->rejectedVehicles ? round($this->totalEmission / $this->rejectedVehicles, 1) : 0
+            "totalEmittedWhileWaiting" => round($this->carEmission, 1),
+            "averageEmissionPerRejectedVehicle" => $this->allCarEmission ? round($this->carEmission / $this->allCarEmission, 1) : 0
         ];
     }
 }

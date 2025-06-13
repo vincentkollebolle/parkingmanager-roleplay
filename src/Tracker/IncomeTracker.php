@@ -1,22 +1,22 @@
 <?php
 class IncomeTracker {
-    private $moneyWon = 0;
-    private $moneyLost = 0;
+    private $moneyEarn = 0;
+    private $lossOfEarning = 0;
 
     public function addRevenue($amount) {
-        $this->moneyWon += $amount;
+        $this->moneyEarn += $amount;
     }
 
     public function addLost($amount) {
-        $this->moneyLost += $amount;
+        $this->lossOfEarning += $amount;
     }
 
     public function onTick($tick) {}
 
     public function getReport(): array {
         return [
-            "moneyWon" => $this->moneyWon,
-            "moneyLost" => $this->moneyLost
+            "moneyEarn" => $this->moneyEarn,
+            "lossOfEarning" => $this->lossOfEarning
         ];
     }
 }
