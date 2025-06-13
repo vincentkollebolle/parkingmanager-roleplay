@@ -16,28 +16,24 @@ class PricingStrategiesTest extends TestCase
         $strategy = new DemandBasedStrategy();
         $vehicle = new Vehicle(VehicleEnum::from('car'), 1, 10.0);
         
-        // Test normal occupancy
         $price = $strategy->calculatePrice($vehicle, 0.5);
-        $this->assertEquals(2.0, $price); // Base price for car
+        $this->assertEquals(2.0, $price); 
         
-        // Test high demand
         $price = $strategy->calculatePrice($vehicle, 0.9);
-        $this->assertEquals(3.0, $price); // 1.5x base price
+        $this->assertEquals(3.0, $price); 
     }
 
     public function testEcoFriendlyStrategy(): void
     {
         $strategy = new EcoFriendlyDiscountStrategy();
         
-        // Test eco-friendly vehicle (bike)
         $bike = new Vehicle(VehicleEnum::from('bike'), 1, 10.0);
         $price = $strategy->calculatePrice($bike);
-        $this->assertEquals(0.4, $price); // 20% discount on 0.5 base price
+        $this->assertEquals(0.4, $price); 
         
-        // Test regular vehicle
         $car = new Vehicle(VehicleEnum::from('car'), 1, 10.0);
         $price = $strategy->calculatePrice($car);
-        $this->assertEquals(2.0, $price); // No discount
+        $this->assertEquals(2.0, $price); 
     }
 
     public function testFlatRateStrategy(): void

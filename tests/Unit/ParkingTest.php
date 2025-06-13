@@ -13,7 +13,7 @@ class ParkingTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->parking = Parking::getInstance(10); // Small size for testing
+        $this->parking = Parking::getInstance(10); 
     }
 
     protected function tearDown(): void
@@ -26,7 +26,7 @@ class ParkingTest extends TestCase
     public function testSingleton(): void
     {
         $parking1 = Parking::getInstance(10);
-        $parking2 = Parking::getInstance(20); // Different size should not matter
+        $parking2 = Parking::getInstance(20); 
         
         $this->assertSame($parking1, $parking2);
     }
@@ -43,19 +43,16 @@ class ParkingTest extends TestCase
 
     public function testParkingFullRejection(): void
     {
-        // Reset parking state
         $reflection = new \ReflectionClass(Parking::class);
         $vehiclesProperty = $reflection->getProperty('vehicles');
         $vehiclesProperty->setAccessible(true);
         $vehiclesProperty->setValue($this->parking, []);
         
-        // Fill the parking
         for ($i = 0; $i < 10; $i++) {
             $vehicle = new Vehicle(VehicleEnum::from('car'), 2, 10.0);
             $this->parking->parkVehicle($vehicle);
         }
 
-        // Try to park one more
         $extraVehicle = new Vehicle(VehicleEnum::from('car'), 2, 10.0);
         $this->parking->parkVehicle($extraVehicle);
 

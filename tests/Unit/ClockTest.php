@@ -29,7 +29,6 @@ class ClockTest extends TestCase
         $clock->subscribe($observer1);
         $clock->subscribe($observer2);
 
-        // Simulate 3 ticks
         for ($i = 0; $i < 3; $i++) {
             $clock->tick();
         }
@@ -57,7 +56,6 @@ class ClockTest extends TestCase
         $clock = new Clock();
         $observer = new MockObserver();
         
-        // Tick before subscribing
         $clock->tick();
         $clock->tick();
         

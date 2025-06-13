@@ -40,7 +40,6 @@ class SimulationRunnerTest extends TestCase
         $simulator = new SimulationRunner();
         $result = $simulator->run($this->sampleTrafficSchedule);
 
-        // Test structure of result
         $this->assertArrayHasKey('simulationName', $result);
         $this->assertArrayHasKey('parkingSize', $result);
         $this->assertArrayHasKey('durationTicks', $result);
@@ -49,11 +48,9 @@ class SimulationRunnerTest extends TestCase
         $this->assertArrayHasKey('byVehicleType', $result);
         $this->assertArrayHasKey('co2', $result);
 
-        // Test specific values
         $this->assertEquals(1000, $result['parkingSize']);
         $this->assertEquals(8760, $result['durationTicks']);
 
-        // Test vehicle type stats
         $vehicleStats = $result['byVehicleType'];
         $this->assertArrayHasKey('car', $vehicleStats);
         $this->assertArrayHasKey('bike', $vehicleStats);

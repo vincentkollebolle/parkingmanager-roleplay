@@ -58,18 +58,14 @@ class RoadTest extends TestCase
         ];
 
         $road = new Road($schedule, $this->incomeTracker, $this->co2Tracker);
-        $road->onTick(0); // First tick should generate two vehicles
-
-        // The effects should be visible in the trackers
-        // We can't directly test the vehicle generation as it's handled internally
+        $road->onTick(0); 
         $this->assertNotEmpty($this->co2Tracker->getReport());
     }
 
     public function testEmptyScheduleTick(): void
     {
         $road = new Road([], $this->incomeTracker, $this->co2Tracker);
-        $road->onTick(0); // Should handle empty schedule gracefully
-        
+        $road->onTick(0); 
         $this->assertEmpty($this->co2Tracker->getReport()['totalEmittedWhileWaiting']);
     }
 }

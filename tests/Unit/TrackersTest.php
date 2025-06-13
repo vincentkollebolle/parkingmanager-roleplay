@@ -14,10 +14,9 @@ class TrackersTest extends TestCase
     {
         $tracker = new CO2Tracker();
         
-        // Add some rejected vehicles
-        $car = new Vehicle(VehicleEnum::from('car'), 1, 10.0);    // CO2: 3.5
-        $truck = new Vehicle(VehicleEnum::from('truck'), 1, 15.0); // CO2: 6.0
-        $moto = new Vehicle(VehicleEnum::from('moto'), 1, 5.0);   // CO2: 1.0
+        $car = new Vehicle(VehicleEnum::from('car'), 1, 10.0);   
+        $truck = new Vehicle(VehicleEnum::from('truck'), 1, 15.0);
+        $moto = new Vehicle(VehicleEnum::from('moto'), 1, 5.0);   
         
         $tracker->addRejected($car);
         $tracker->addRejected($truck);

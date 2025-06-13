@@ -22,7 +22,7 @@ class ParkingSystemTest extends TestCase
     protected function setUp(): void
     {
         $this->clock = new Clock();
-        $this->parking = Parking::getInstance(5); // Small size for testing
+        $this->parking = Parking::getInstance(5);
         $this->incomeTracker = new IncomeTracker();
         $this->co2Tracker = new CO2Tracker();
     }
@@ -71,7 +71,6 @@ class ParkingSystemTest extends TestCase
         $this->clock->subscribe($this->incomeTracker);
         $this->clock->subscribe($this->co2Tracker);
 
-        // Run simulation for 4 hours
         for ($i = 0; $i < 4; $i++) {
             $this->clock->tick();
         }
@@ -90,10 +89,8 @@ class ParkingSystemTest extends TestCase
     {
         $priceManager = new PriceManager(new DemandBasedStrategy());
         
-        // Start with demand-based pricing
         $initialStrategy = $priceManager->getStrategyName();
         
-        // Switch to eco-friendly pricing
         $priceManager->setStrategy(new EcoFriendlyDiscountStrategy());
         
         $this->assertNotEquals($initialStrategy, $priceManager->getStrategyName());
