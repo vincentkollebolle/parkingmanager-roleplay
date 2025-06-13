@@ -10,9 +10,4 @@ class VehicleFactory
     {
         return new Vehicle($type, $duration, $price);
     }
-
-    public static function getPrice(VehicleEnum $type): float
-    {
-        return $type->getPrice();
-    }
 }

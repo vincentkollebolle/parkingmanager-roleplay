@@ -76,7 +76,7 @@ class Parking {
             $details[$type] = array_merge([
                 'parked' => 0,
                 'rejected' => 0,
-                'ticketPricePerHour' => VehicleFactory::getPrice(VehicleEnum::from($type)),
+                'ticketPricePerHour' => VehicleEnum::from($type)->getPrice(),
             ], $data);
         }
         return $details;

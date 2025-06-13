@@ -5,12 +5,14 @@ namespace App;
 use App\Enum\VehicleEnum;
 use App\VehicleFactory;
 
-class Road {
+class Road
+{
     private $schedule = [];
     private $incomeTracker;
     private $co2Tracker;
 
-    public function __construct(array $trafficSchedule, $incomeTracker, $co2Tracker) {
+    public function __construct(array $trafficSchedule, $incomeTracker, $co2Tracker)
+    {
         foreach ($trafficSchedule as $entry) {
             $tick = (int)((strtotime($entry['date']) - strtotime("2025-01-01 00:00")) / 3600);
             $this->schedule[$tick] = $entry['vehicles'];
@@ -19,17 +21,17 @@ class Road {
         $this->co2Tracker = $co2Tracker;
     }
 
-    public function onTick($tick) {
+    public function onTick($tick)
+    {
         if (isset($this->schedule[$tick])) {
             foreach ($this->schedule[$tick] as $vehicleData) {
                 $vehicle = VehicleFactory::create($vehicleData['type'], $vehicleData['wantedDuration'], $vehicleData['maxPricePerTick']);
-                $price = VehicleFactory::getPrice(VehicleEnum::from($vehicle->getType()));
-                if ($price > $vehicle->getMaxPricePerTick()) {
-                    $this->incomeTracker->addLost($price * $vehicle->getWantedDuration());
+                if ($vehicle->getType()->getPrice() > $vehicle->getMaxPricePerTick()) {
+                    $this->incomeTracker->addLost($vehicle->getType()->getPrice() * $vehicle->getWantedDuration());
                     $this->co2Tracker->addRejected($vehicle);
                     Parking::getInstance()->rejectVehicle($vehicle);
                 } else {
-                    $this->incomeTracker->addRevenue($price * $vehicle->getWantedDuration());
+                    $this->incomeTracker->addRevenue($vehicle->getType()->getPrice() * $vehicle->getWantedDuration());
                     Parking::getInstance()->parkVehicle($vehicle);
                 }
             }

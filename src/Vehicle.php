@@ -18,9 +18,9 @@ class Vehicle implements VehicleInterface
         $this->maxPrice = $maxPrice;
     }
 
-    public function getType(): string
+    public function getType(): VehicleEnum
     {
-        return $this->type->value;
+        return $this->type;
     }
 
     public function getWantedDuration(): int
