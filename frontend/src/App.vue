@@ -2,6 +2,8 @@
 import SimulationSummary from './components/SimulationSummary.vue'
 import SimulationCO2 from './components/SimulationCO2.vue'
 import SimulationVehicleBreakdown from './components/SimulationVehicleBreakdown.vue'
+import PieChartParked from './components/PieChartParked.vue'
+import PieChartRejected from './components/PieChartRejected.vue'
 
 import { ref, onMounted, computed } from 'vue'
 
@@ -67,6 +69,15 @@ const formattedSimulationName = computed(() => {
             v-if="simulation"
             :co2="simulation.co2"
         />
+      </div>
+    </div>
+
+    <div class="flex gap-6 mb-8" style="height: 350px;">
+      <div class="flex-1 space-y-4 h-full flex justify-center" >
+        <PieChartParked />
+      </div>
+      <div class="flex-1 space-y-4 h-full flex justify-center">
+        <PieChartRejected />
       </div>
     </div>
   </div>
