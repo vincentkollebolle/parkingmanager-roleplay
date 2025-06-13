@@ -1,25 +1,23 @@
 <?php
-require_once 'Clock.php';
-require_once 'Parking.php';
-require_once 'Route.php';
-require_once 'IncomeTracker.php';
-require_once 'CO2Tracker.php';
-require_once 'VehicleFactory.php';
 
-class SimulationRunner {
-    public function run(array $trafficSchedule): array {
+namespace App;
+
+class SimulationRunner
+{
+    public function run(array $trafficSchedule): array
+    {
         $parkingSize = 1000;
         $durationTicks = 8760;
-        $clock = new Clock($durationTicks);
+        $clock = new Clock();
         $parking = Parking::getInstance($parkingSize);
         $incomeTracker = new IncomeTracker();
         $co2Tracker = new CO2Tracker();
         $route = new Route($trafficSchedule, $incomeTracker, $co2Tracker);
 
-        $clock->attach($route);
-        $clock->attach($parking);
-        $clock->attach($incomeTracker);
-        $clock->attach($co2Tracker);
+        $clock->subscribe($route);
+        $clock->subscribe($parking);
+        $clock->subscribe($incomeTracker);
+        $clock->subscribe($co2Tracker);
 
         for ($i = 0; $i < $durationTicks; $i++) {
             $clock->tick();
