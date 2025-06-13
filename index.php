@@ -4,6 +4,18 @@ use App\SimulationRunner;
 
 require_once 'vendor/autoload.php';
 
+// Headers CORS pour permettre l'accès depuis toutes les origines
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: *');
+
+
+// Gérer les requêtes preflight OPTIONS
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['route']) && $_GET['route'] === 'scenario') {
 
     $data = json_decode(file_get_contents('php://input'), true);
