@@ -28,6 +28,10 @@ class Road implements ObserverInterface
             foreach ($this->schedule[$tick] as $vehicleData) {
                 $vehicleType = VehicleEnum::from($vehicleData['type']);
                 $vehicle = VehicleFactory::create($vehicleType, $vehicleData['wantedDuration'], $vehicleData['maxPricePerTick']);
+                
+                // Comptabiliser le véhicule comme généré
+                Parking::getInstance()->incrementVehiclesGenerated();
+                
                 if ($vehicle->getType()->getPrice() > $vehicle->getMaxPricePerTick()) {
                     $this->incomeTracker->addLost($vehicle->getType()->getPrice() * $vehicle->getWantedDuration());
                     $this->co2Tracker->addRejected($vehicle);

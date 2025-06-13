@@ -33,9 +33,12 @@ class Parking implements ObserverInterface {
 
     public function onTick(int $tick): void {}
 
+    public function incrementVehiclesGenerated() {
+        $this->totalVehiclesGenerated++;
+    }
+
     public function parkVehicle($vehicle) {
         $type = $vehicle->getType()->value;
-        $this->totalVehiclesGenerated++;
 
         if (!isset($this->stats['byType'][$type])) {
             $this->stats['byType'][$type] = ['parked' => 0, 'rejected' => 0];
