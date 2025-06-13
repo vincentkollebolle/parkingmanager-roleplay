@@ -22,7 +22,9 @@ class VehicleFactoryTest extends TestCase
         $this->assertEquals($duration, $vehicle->getWantedDuration());
         $this->assertEquals($price, $vehicle->getMaxPricePerTick());
     }
-
+    /**
+     * @dataProvider vehicleTypesProvider
+     */
     public function testCreateAllVehicleTypes(string $type): void
     {
         $vehicleEnum = VehicleEnum::from($type);
