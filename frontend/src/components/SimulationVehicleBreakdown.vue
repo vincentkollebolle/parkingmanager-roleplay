@@ -33,7 +33,8 @@ const getEmoji = (type) => {
     case 'car': return '🚗'
     case 'electric': return '⚡🚗'
     case 'truck': return '🚛'
-    case 'bike': return '🏍️'
+    case 'moto': return '🏍️'
+    case 'bike': return '🚲'
     default: return '🚙'
   }
 }
@@ -42,7 +43,8 @@ const vehicleTypeTranslations = {
   car: "Voiture",
   electric: "Voiture électrique",
   truck: "Camion",
-  bike: "Moto"
+  moto: "Moto",
+  bike: "Vélo",
 }
 
 const translateType = (key) => vehicleTypeTranslations[key] || capitalize(key)

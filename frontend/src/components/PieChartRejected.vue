@@ -3,76 +3,77 @@
 </template>
 
 <script setup>
-import dashboard from '../../public/api/dashboard.json';
-import { Pie } from 'vue-chartjs';
+import { computed } from 'vue'
+import { Pie } from 'vue-chartjs'
 import {
-    Chart as ChartJS,
-    ArcElement, Tooltip, Legend, Title
-} from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, Title);
+  Chart as ChartJS,
+  ArcElement, Tooltip, Legend, Title
+} from 'chart.js'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels, Title)
 
-const vehiculesData = dashboard.byVehicleType;
-const labels = [];
-const data = [];
+const props = defineProps({
+  vehiculesData: Object
+})
 
-for (const [type, value] of Object.entries(vehiculesData)) {
-    let label = ''
-    switch (type) {
+const chartData = computed(() => {
+  const labels = []
+  const data = []
+  if (props.vehiculesData) {
+    for (const [type, value] of Object.entries(props.vehiculesData)) {
+      let label = ''
+      switch (type) {
         case 'car':
-            label = 'Voitures';
-            break;
+          label = 'Voitures'
+          break
         case 'electric':
-            label = 'Voitures électriques';
-            break;
+          label = 'Voitures électriques'
+          break
         case 'truck':
-            label = 'Camions';
-            break;
+          label = 'Camions'
+          break
+        case 'moto':
+          label = 'Motos'
+          break
         case 'bike':
-            label = 'Motos';
-            break;
+          label = 'Vélos'
+          break
+      }
+      labels.push(label)
+      data.push(value.rejected)
     }
-    labels.push(label);
-    data.push(value.rejected);
-}
- 
-const chartData = {
-    labels: labels,
+  }
+  return {
+    labels,
     datasets: [
-        {
-            label: 'Nombre de véhicules',
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-            data: data
-        }
+      {
+        label: 'Nombre de véhicules',
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'],
+        data
+      }
     ]
-}
+  }
+})
 
 const chartOptions = {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'bottom',
-        },
-        title: {
-            display: true,
-            text: 'Nombre de véhicules refusés par type',
-            font: {
-                size: 18,
-                weight: 'bold'
-            }
-        },
-        datalabels: {
-            formatter: (value, context) => {
-                const data = context.chart.data.datasets[0].data;
-                const total = data.reduce((a, b) => a + b, 0);
-                const percentage = ((value / total) * 100).toFixed(1) + '%';
-                return percentage;
-            },
-            color: '#fff',
-            font: {
-                weight: 'bold'
-            }
-        }
+  responsive: true,
+  plugins: {
+    legend: { position: 'bottom' },
+    title: {
+      display: true,
+      text: 'Nombre de véhicules refusés par type',
+      font: { size: 18, weight: 'bold' }
+    },
+    datalabels: {
+      formatter: (value, context) => {
+        const data = context.chart.data.datasets[0].data
+        const total = data.reduce((a, b) => a + b, 0)
+        const percentage = ((value / total) * 100).toFixed(1) + '%'
+        return percentage
+      },
+      color: '#fff',
+      font: { weight: 'bold' }
     }
+  }
 }
 </script>

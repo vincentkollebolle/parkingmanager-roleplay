@@ -74,10 +74,10 @@ const formattedSimulationName = computed(() => {
 
     <div class="flex gap-6 mb-8" style="height: 350px;">
       <div class="flex-1 space-y-4 h-full flex justify-center" >
-        <PieChartParked />
+        <PieChartParked :vehicules-data="simulation?.byVehicleType" />
       </div>
       <div class="flex-1 space-y-4 h-full flex justify-center">
-        <PieChartRejected />
+        <PieChartRejected :vehicules-data="simulation?.byVehicleType" />
       </div>
     </div>
   </div>

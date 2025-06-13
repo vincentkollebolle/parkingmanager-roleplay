@@ -1,44 +1,40 @@
 {
-  "simulationName": "ParkingManager_2025-06-11_14-00",
+  "simulationName": "ParkingManager_2025-06-13_09-39",
   "parkingSize": 1000,
   "durationTicks": 8760,
-
   "revenue": {
-    "moneyWon": 158340,
-    "moneyLost": 23400
+    "moneyEarn": 304117,
+    "lossOfEarning": 43910
   },
-
   "traffic": {
-    "totalVehiclesGenerated": 12345,
-    "totalVehiclesParked": 9876,
-    "totalVehiclesRejected": 2469
+    "totalVehiclesGenerated": 61317,
+    "totalVehiclesParked": 1000,
+    "totalVehiclesRejected": 32921
   },
-
   "byVehicleType": {
-    "car": {
-      "parked": 5200,
-      "rejected": 900,
-      "ticketPricePerHour": 2
-    },
-    "electric": {
-      "parked": 1500,
-      "rejected": 300,
+    "moto": {
+      "parked": 283,
+      "rejected": 8305,
       "ticketPricePerHour": 1.5
     },
-    "truck": {
-      "parked": 800,
-      "rejected": 200,
-      "ticketPricePerHour": 3.5
-    },
     "bike": {
-      "parked": 2376,
-      "rejected": 1069,
+      "parked": 287,
+      "rejected": 8196,
       "ticketPricePerHour": 0.5
+    },
+    "car": {
+      "parked": 220,
+      "rejected": 8175,
+      "ticketPricePerHour": 2
+    },
+    "truck": {
+      "parked": 210,
+      "rejected": 8245,
+      "ticketPricePerHour": 3.5
     }
   },
-
   "co2": {
-    "totalEmittedWhileWaiting": 35400.5,
-    "averageEmissionPerRejectedVehicle": 3.8
+    "totalEmittedWhileWaiting": 19511.5,
+    "averageEmissionPerRejectedVehicle": 3.5
   }
 }
