@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Interface\ObserverInterface;
+use App\Interfaces\ObserverInterface;
 
 class Clock
 {

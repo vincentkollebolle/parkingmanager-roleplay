@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Enum\VehicleEnum;
-use App\Interface\VehicleInterface;
+use App\Interfaces\VehicleInterface;
 
 class Vehicle implements VehicleInterface
 {
